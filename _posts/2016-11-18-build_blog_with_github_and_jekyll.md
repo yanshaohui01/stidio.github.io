@@ -151,4 +151,4 @@ Jekyll的Markdown解释器从3.0开始，默认从 *redcarpet+Pygments* 换为 *
 
 <br/>
 
-> [原始链接]({{page.url}}) 版权声明：自由转载-非商用-非衍生-保持署名 \| [Creative Commons BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)
+> [原始链接](https://stidio.github.io/2016/11/build_blog_with_github_and_jekyll/) 版权声明：自由转载-非商用-非衍生-保持署名 \| [Creative Commons BY-NC-ND 4.0](http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)
