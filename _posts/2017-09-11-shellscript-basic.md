@@ -26,6 +26,7 @@ tags: [shell, Linux, 教程]
     sed 's/old/new/g'
     ifconfig | grep 'int addr:' |grep -v '127.0.0.1' | sed 's/int addr://g' | sed继续处理
     awk -F: '{print $1 $2}' /etc/passwd
+    
 ## 变量的使用 ##
     1 、环境变量=> 用户环境变量(cat ~/.bash_profile)   系统环境变量(/etc/profile) set 命令看所有环境变量
     2 、位置变量和shell脚本配合使用:
@@ -39,9 +40,11 @@ tags: [shell, Linux, 教程]
         $$ 代表当前进程的ID号码
         $# 代表当前shell的参数个数
         $@ 代表所有参数内容(逐个读取)
+        
 ## 算数运算 ##
     $((5+4)))=$[5+4] 两个小括号等于一个中括号
     expr 5 / 4 注意有空格
+    
 ## 内置判定 ##
     test 2 -lt 3 等价于 [ 2 -lt 3 ] 返回0表示成立 返回1表示不成功
     echo $?
@@ -61,6 +64,7 @@ tags: [shell, Linux, 教程]
     -c 文件名 如果文件存在且为字符型特殊文件则为真
     -b 文件名 如果文件存在且为块特殊文件则为真
     逻辑判定： 与(!)、或(-o)、非(-a)三个逻辑操作符 用于将测试条件连接起来，其有限顺序为: !最高 -a其次 -o最低
+    
 ## 日期处理 ##
     date +"%Y-%m-%d" 2009-12-07
     date -d "1 day ago" +"%Y-%m-%d"
@@ -74,6 +78,7 @@ tags: [shell, Linux, 教程]
     date -d "+1 month" +%Y%m%d //显示下一月的日期
     date -d "-1 year" +%Y%m%d //显示前一年的日期
     date -d "+1 year" +%Y%m%d //显示下一年的日期
+    
 ## 计划任务 ##
     at 一次性的计划任务
     contab 周期性计划任务
