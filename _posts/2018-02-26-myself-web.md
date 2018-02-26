@@ -13,11 +13,11 @@ tags: [2018规划 成长 任务]
 > * 3 掌握数据流处理的常用技能：MR程序编写，Kafka+Redis组件运用，Strom、Sprak Streaming等实时数据处理技术，具备数据处理的整体设计思路。
 
 
-常用的学习站点汇总及分类：
-JAVA技能提升网站
-[Java 多线程 并发编程](http://blog.csdn.net/escaflone/article/details/10418651){:target="_blank"}
-[Java中的多线程你只要看这一篇就够了](http://www.cnblogs.com/wxd0108/p/5479442.html){:target="_blank"}
-[Java使用RandomAccessFile读写文件](http://blog.csdn.net/fengspg/article/details/50069837)
+常用的学习站点汇总及分类：   
+JAVA技能提升网站  
+[Java 多线程 并发编程](http://blog.csdn.net/escaflone/article/details/10418651){:target="_blank"}  
+[Java中的多线程你只要看这一篇就够了](http://www.cnblogs.com/wxd0108/p/5479442.html){:target="_blank"}  
+[Java使用RandomAccessFile读写文件](http://blog.csdn.net/fengspg/article/details/50069837) 
 
 
 
