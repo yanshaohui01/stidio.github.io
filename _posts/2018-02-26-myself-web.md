@@ -39,5 +39,6 @@ JDK在线文档 [JDK1.7](http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4)  [J
 在我把一些价值观和思考记录下来的同时，我自然又被很多人关注到了，还吸引很多不同的思路在其中交织讨论。   
 
 [技术变现的文章](https://zhuanlan.zhihu.com/p/30477400){:target="_blank"}
+[MK语法指导](https://segmentfault.com/markdown){:target="_blank"}   
 
 
