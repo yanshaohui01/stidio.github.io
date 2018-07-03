@@ -41,7 +41,7 @@ JDK在线文档 [JDK1.7](http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4)  [J
 [技术变现的文章](https://zhuanlan.zhihu.com/p/30477400){:target="_blank"}  
 [MK语法指导](https://segmentfault.com/markdown){:target="_blank"}  
  
- ### 机器学习篇 ###
+### 机器学习篇 ###
 **关键不是过去发生了什么而是将来会有什么发生。**
 理解算法的两种途径：数据层面 和 概念层面
 广义来说三种机器学习算法
@@ -65,6 +65,9 @@ JDK在线文档 [JDK1.7](http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4)  [J
 9.降维算法  
 10.Gradient Boost 和 Adaboost 算法 
 [文章摘源](http://blog.jobbole.com/92021/){:target="_blank"}
+
+好记性不如烂笔头，对简单而又常见道理的二次理解。
+
 
 
 
