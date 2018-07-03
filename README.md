@@ -22,7 +22,6 @@
     ![](/assets/build_blog_with_github_and_jekyll/02.jpg)
 
 2. 将该代码仓库克隆到地:
-
     > ```sh
     > $ git clone https://github.com/stidio/stidio.github.io
     > ```
