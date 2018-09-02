@@ -8,24 +8,24 @@ tags: [RedisCluster 高并发 性能优化 分布式锁设计]
 ### 1.Redis 数据类型分析 ###
 [doc](http://redisdoc.com/){:target="_blank"}
 1. String
-set/get 批量存取；失效expire机制；失效后出发级联动作
+>set/get 批量存取；失效expire机制；失效后出发级联动作
 作用 1）全局技术 2）缓存一般值
 数据结构：
 
 2. Hash
-hset/hget hmset/hmget 存取结构化数据，比较方便的就是操作其中的某个字段；
+>hset/hget hmset/hmget 存取结构化数据，比较方便的就是操作其中的某个字段；
 1）单点登录 2）key filed value
 数据结构：
 3. List
-lpush/lpushx/lpop
+>lpush/lpushx/lpop
 作用 1）简单消息队列  2）分页 lrange
 数据结构：
 4. Set
-sadd/spop/smembers
+>sadd/spop/smembers
 作用 1）全局去重的功能 2）利用交集、并集、差集等操作，可以计算共同喜好，全部的喜好，自己独有的喜好等功能
 数据结构：
 5. Sorted Set
-sorted set多了一个权重参数score,集合中的元素能够按score进行排列
+>sorted set多了一个权重参数score,集合中的元素能够按score进行排列
 作用 1）排行榜应用，取TOP N操作 2)sorted set可以用来做延时任务 3)范围查找
 数据结构：
 
