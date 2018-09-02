@@ -65,6 +65,7 @@ JDK在线文档 [JDK1.7](http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4)  [J
 9.降维算法  
 10.Gradient Boost 和 Adaboost 算法 
 [文章摘源](http://blog.jobbole.com/92021/){:target="_blank"}
+[markdown语法](https://coding.net/help/doc/project/markdown.html#i){:target="_blank"}
 
 好记性不如烂笔头，对简单而又常见道理的二次理解。
 
