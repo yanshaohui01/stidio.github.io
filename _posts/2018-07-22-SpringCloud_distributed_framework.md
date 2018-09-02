@@ -7,9 +7,26 @@ tags: [RedisCluster 高并发 性能优化 分布式锁设计]
 ## 概述 ##
 ### Redis 数据类型及底层数据结构&数据类型使用场景 ###
 ![doc](http://redisdoc.com/){:target="_blank"}
+String
+set/get 批量存取；失效expire机制；失效后出发级联动作
+作用 1）全局技术 2）缓存一般值
 
+Hash
+hset/hget hmset/hmget 存取结构化数据，比较方便的就是操作其中的某个字段；
+1）单点登录 2）key filed value
+List
+lpush/lpushx/lpop
+作用 1）简单消息队列  2）分页 lrange
+Set
+sadd/spop/smembers
+作用 1）全局去重的功能 2）利用交集、并集、差集等操作，可以计算共同喜好，全部的喜好，自己独有的喜好等功能
+Sorted Set
+sorted set多了一个权重参数score,集合中的元素能够按score进行排列
+作用 1）排行榜应用，取TOP N操作 2)sorted set可以用来做延时任务 3)范围查找
 
-Redis集群的冷热数据分离
+* Redis集群的冷热数据分离 
+* Redis 分布式并发问题/Redis 事务应用
+
 
 ### Redis 内存估算 ###
 ![内存模型](http://wadeling.blogspot.com/2016/07/redis.html){:target="_blank"}
