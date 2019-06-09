@@ -44,7 +44,7 @@ value：8字节，sds对象：9字节，总共是17字节，按jemalloc分配机
 bucket个数大概为6000万（5000万向上取整到2的n次方，即2的26次方，6000多万）
 bucket大小：6000万*4 = 240M左右。
  
-[REDIS内存容量的预估和优化](https://searchdatabase.techtarget.com.cn/7-20218/){:target="_blank"}
+[REDIS内存容量的预估和优化](https://searchdatabase.techtarget.com.cn/7-20218/){:target="_blank"}  
 [内存管理算法总结:ptmalloc、tcmalloc和jemalloc](https://blog.csdn.net/junlon2006/article/details/77854898/){:target="_blnak"}
 ### Redis 主要解决的问题 ###
 1. 性能
@@ -53,6 +53,7 @@ bucket大小：6000万*4 = 240M左右。
 > 高并发情况下，所有的请求直接访问数据库，数据库会出现连接异常。(广告位判定是否存在)
 
 ### Redis集群的冷热数据分离 
+
 ### Redis事务应用和精度丢失问题
 ## 高级特性 ##
 ### Redis 优化(Codis&RedisCluster;多端口实例；参数调优) ###
