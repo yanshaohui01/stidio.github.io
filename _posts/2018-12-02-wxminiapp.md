@@ -5,8 +5,8 @@ date: 2018-12-02
 tags: [微信小程序, JS, Promise, async/await]
 ---
 ### 小程序语法
-1. app.js 声明全局变量  
-getApp 获取到小程序全局唯一的 App 实例  
+
+1. app.js 声明全局变量，getApp获取到小程序全局唯一的 App 实例  
 
 ```
 App({
@@ -57,8 +57,8 @@ App({
 })
 
 ```
-2. app.json
-小程序根目录下的 app.json 文件用来对微信小程序进行全局配置  
+
+2. app.json，小程序根目录下的 app.json 文件用来对微信小程序进行全局配置  
 详情参考[腾讯官网接口app.json部分](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html){:target="_blank"}
 
 ```
@@ -132,8 +132,7 @@ App({
 }
 ```
 
-3. page生命周期;  
-getCurrentPages() 获取当前页面栈,返回一个数组
+3. page生命周期; getCurrentPages() 获取当前页面栈,返回一个数组
 
 ```
 Page({
@@ -193,6 +192,7 @@ module.exports = config;
 引用：
 var config = require('../../config');
 ```
+
 5. project.config.json
 可以在项目根目录使用 project.config.json 文件对项目进行配置;  
 .js处理逻辑和.wxml展示分离
