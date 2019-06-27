@@ -256,6 +256,24 @@ tags: [微信小程序, JS, Promise, async/await]
        requestPromisePost
     }
     ```
+7. 小程序存储全局变量的两种方式：
+>    * 存储到app对象上的方式
+>
+        ```
+        var app = getApp()
+        app.globalData.mydata = {a:1, b:2};  //存储数据到app对象上
+        ```
+>    * 存储到数据缓存的方式
+>
+        ```
+        wx.setStorage({
+          key: "mydata",
+          data: {a:1, b:2},
+          success: function () {
+            wx.navigateBack();   //返回上一个页面
+          }
+        })
+        ```
 
 ### js 部分
 
@@ -293,8 +311,21 @@ tags: [微信小程序, JS, Promise, async/await]
     
 3. 函数声明三种方式
 
-    ```apple js
+    ```
     1) const myFunction = function(){};
     2) function myFunction(参数可传可不传){};
     3) 箭头函数相当于 匿名函数(可变参数)： (x, y, ...rest) =>{ var i,sum=x+y;for(i=0;i<rest.length;i++){sum += rest[i];} return sum}; 
     ```
+4. JS 其他语法总结
+>
+>   * 5种基本数据类型（undefined / null /  boolean / number / string）（3种也做了引用类型封装，分别是Boolean、Number、String）
+>    * 1种复杂的数据类型（Array：数组类型   Date：日期类型  RegExp：正则表达式类型）  
+>    * 基本类型用typeof操作符；引用类型用instanceof操作符
+>    * 作用域：子函数可以访问父函数的作用域=>祖先函数的作用域=>直到全局作用域
+>    * 基本操作符：
+    常用的操作符包括：算术操作符、关系操作符、布尔操作符、赋值操作符。  
+    == ===  &&   ! !! !!! (undefined null 0)  var a  if(!a){}
+>    * 基本控制语句：
+    if语句、switch语句、for语句、while-do语句、do-while、for-in语句
+    对象.属性 
+>    * 分清楚是JSON对象还是json字符串;
