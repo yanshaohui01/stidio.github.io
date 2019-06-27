@@ -200,7 +200,7 @@ tags: [微信小程序, JS, Promise, async/await]
 6. 微信小程序中 同步请求（get/post）使用promise封装，避免回到地狱  
    [微信小程序使用promise封装异步请求](https://www.cnblogs.com/weihuan/p/9113944.html){:target="_blank"}
     
-    ```apple js
+    ```
     const requestPromisePost = (myUrl,data) => {
       // 返回一个Promise实例对象
       return new Promise((resolve, reject) => {
@@ -261,8 +261,7 @@ tags: [微信小程序, JS, Promise, async/await]
 
 1. this 的指向问题  两种解决方案如下 1>  2> 
 
-    ```apple js
-    
+    ```
     Page({
       data: {
         text: 'init data',
