@@ -7,6 +7,7 @@ tags: [微信小程序, JS, Promise, async/await]
 ### 小程序语法
 1. app.js 声明全局变量  
 getApp 获取到小程序全局唯一的 App 实例  
+
 ```apple js
 App({
   globalData: {
@@ -54,10 +55,12 @@ App({
     console.log('qmt小程序初始化错误'+error);
   }
 })
+
 ```
 2. app.json
 小程序根目录下的 app.json 文件用来对微信小程序进行全局配置  
 详情参考[腾讯官网接口app.json部分](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html){:target="_blank"}
+
 ```apple js
 {
   "pages": [
@@ -131,6 +134,7 @@ App({
 
 3. page生命周期;  
 getCurrentPages() 获取当前页面栈,返回一个数组
+
 ```apple js
 Page({
   data: { // 参与页面渲染的数据
@@ -178,9 +182,11 @@ Page({
   onShareAppMessage: function () {
   }
 })
+
 ```
 
 4. require  module  exports 模块
+
 ```apple js
 输出：
 module.exports = config;
