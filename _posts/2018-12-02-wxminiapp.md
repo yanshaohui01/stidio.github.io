@@ -197,4 +197,105 @@ tags: [微信小程序, JS, Promise, async/await]
 可以在项目根目录使用 project.config.json 文件对项目进行配置;  
 .js处理逻辑和.wxml展示分离
 
+6. 微信小程序中 同步请求（get/post）使用promise封装，避免回到地狱  
+   [微信小程序使用promise封装异步请求](https://www.cnblogs.com/weihuan/p/9113944.html){:target="_blank"}
+    
+    ```apple js
+    const requestPromisePost = (myUrl,data) => {
+      // 返回一个Promise实例对象
+      return new Promise((resolve, reject) => {
+        wx.request({
+          url: myUrl,
+          data: data,
+          method: 'POST',
+          header: {
+            'content-type': 'application/json',
+          },
+          success: function (res) {//服务器返回数据
+            if (res.statusCode == 200) {
+              resolve(res);
+            } else {//返回错误提示信息
+              reject(res.data);
+            }
+          },
+          error: function (e) {
+            reject('网络出错');
+          }
+        })
+      })
+    }
+ 
+     // 封装get请求
+     const requestPromiseGet = (url, data) => {
+       var promise = new Promise((resolve, reject) => {
+         //网络请求
+         wx.request({
+           url: url,
+           data: data,
+           header: {
+             'content-type': 'application/json',
+             'token': wx.getStorageSync('token')
+           },
+           success: function (res) {//服务器返回数据
+             if (res.statusCode == 200) {
+               resolve(res);
+             } else {//返回错误提示信息
+               reject(res.data);
+             }
+           },
+           error: function (e) {
+             reject('网络出错');
+           }
+         })
+       });
+       return promise;
+     }
+ 
+    module.exports = {
+       requestPromiseGet,
+       requestPromisePost
+    }
+    ```
+
 ### js 部分
+
+1. this 的指向问题  两种解决方案如下 1>  2> 
+
+    ```apple js
+    
+    Page({
+      data: {
+        text: 'init data',
+        array: [{text: 'init data'}],
+        object: {
+          text: 'init data'
+        }
+      },
+      changeText: function() {
+        this.data.text = 'changed data'  //这是错误的，因为在JavaScript中this代表当前对象，会随着程序的执行而上下改变--解决办法看下面 1>  2>
+       1> var that=this; //复制一份this到临时变量that中
+    　　　 this.setData({ //此时OK
+          text: 'changed data'
+        })
+    　　2> 函数名:res=> {
+    　　　　this.setData({ //此时OK
+          text: 'changed data'
+        })
+    　　}
+      }
+    });
+    
+    ```
+2. js中 变量声明const,var,let区别  
+
+    > + const定义的变量不可以修改，而且必须初始化。
+    > + var定义的变量可以修改，如果不初始化会输出undefined，不会报错。
+    > + let是块级作用域，函数内部使用let定义后，对函数外部无影响。
+    
+3. 函数声明三种方式
+
+    ```apple js
+    1) const myFunction = function(){};
+    2) function myFunction(参数可传可不传){};
+    3) 箭头函数相当于 匿名函数(可变参数)： (x, y, ...rest) =>{ var i,sum=x+y;for(i=0;i<rest.length;i++){sum += rest[i];} return sum}; 
+    ```
