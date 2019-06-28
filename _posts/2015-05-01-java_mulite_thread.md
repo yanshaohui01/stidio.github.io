@@ -48,20 +48,20 @@ java final引用的对象其属性可以改变，但是final型的引用是不�
 
 ### 非阻塞式线程同步方式
 
-    线程之间同步机制的核心是监视对象上的锁，竞争锁来获得执行代码的机会。当一个对象获取对象的锁，然后其他尝试获取锁的对象会处于等待状态，这种锁机制的实现方式很大程度限制了多线程程序的吞吐量和性能（线程阻塞），且会带来死锁（线程A有a对象锁，等着获取b对象锁，线程B有b对象锁，等待获取a对象锁）和优先级倒置（优先级低的线程获得锁，优先级高的只能等待对方释放锁）等问题。
+线程之间同步机制的核心是监视对象上的锁，竞争锁来获得执行代码的机会。当一个对象获取对象的锁，然后其他尝试获取锁的对象会处于等待状态，这种锁机制的实现方式很大程度限制了多线程程序的吞吐量和性能（线程阻塞），且会带来死锁（线程A有a对象锁，等着获取b对象锁，线程B有b对象锁，等待获取a对象锁）和优先级倒置（优先级低的线程获得锁，优先级高的只能等待对方释放锁）等问题。
 
-    如果能不阻塞线程，又能保证多线程程序的正确性，就能有更好的性能。
+如果能不阻塞线程，又能保证多线程程序的正确性，就能有更好的性能。
 
-    在程序中，对共享变量的使用一般遵循一定的模式，即读取、修改和写入三步组成。之前碰到的问题是，这三步执行中可能线程执行切换，造成非原子操作。锁机制是把这三步变成一个原子操作。
+在程序中，对共享变量的使用一般遵循一定的模式，即读取、修改和写入三步组成。之前碰到的问题是，这三步执行中可能线程执行切换，造成非原子操作。锁机制是把这三步变成一个原子操作。
 
-    目前CPU本身实现 将这三步 合起来 形成一个原子操作，无需线程锁机制干预，常见的指令是“比较和替换”（compare and swap,CAS），这个指令会先比较某个内存地址的当前值是不是指定的旧指，如果是，就用新值替换，否则什么也不做，指令返回的结果是内存地址的当前值。通过CAS指令可以实现不依赖锁机制的非阻塞算法。一般做法是把CAS指令的调用放在一个无限循环中，不断尝试，直到CAS指令成功完成修改。
+目前CPU本身实现 将这三步 合起来 形成一个原子操作，无需线程锁机制干预，常见的指令是“比较和替换”（compare and swap=>CAS），这个指令会先比较某个内存地址的当前值是不是指定的旧指，如果是，就用新值替换，否则什么也不做，指令返回的结果是内存地址的当前值。通过CAS指令可以实现不依赖锁机制的非阻塞算法。一般做法是把CAS指令的调用放在一个无限循环中，不断尝试，直到CAS指令成功完成修改。
 
 java.util.concurrent.atomic包中提供了CAS指令。（不是所有CPU都支持CAS，在某些平台，java.util.concurrent.atomic的实现仍然是锁机制）
-注意：java.util.concurrent.atomic包中的Java类属于比较底层的实现，一般作为java.util.concurrent包中很多非阻塞的数据结构的实现基础。
+
+`注意：java.util.concurrent.atomic包中的Java类属于比较底层的实现，一般作为java.util.concurrent包中很多非阻塞的数据结构的实现基础。`
 
 java.util.concurrent.atomic包提供的java类可以分成三类：
 1. 支持以原子操作来进行更新的数据类型的Java类（AtomicBoolean、AtomicInteger、AtomicReference），在内存模型相关的语义上，这四个类的对象类似于volatile变量。写：立即刷新主存，读：以主存为标准；
-    填充 JDK 中的api。
     在实现线程安全的计数器时，AtomicInteger和AtomicLong类时最佳的选择。
 
 2. 提供对数组类型的变量进行处理的Java类，AtomicIntegerArray、AtomicLongArray和AtomicReferenceArray类。（同上，只是放在类数组里，调用时也只是多了一个操作元素索引的参数
@@ -106,7 +106,8 @@ java.util.concurrent包为多线程提供了高层的API，满足日常开发中
           }
        }
     }
-    注：重入性减少了锁在各个线程之间的等待，例如便利一个HashMap，每次next()之前加锁，之后释放，可以保证一个线程一口气完成便利，而不会每次next()之后释放锁，然后和其他线程竞争，降低了加锁的代价， 提供了程序整体的吞吐量。（即，让一个线程一口气完成任务，再把锁传递给其他线程）。
+<u>注：重入性减少了锁在各个线程之间的等待，例如便利一个HashMap，每次next()之前加锁，之后释放，可以保证一个线程一口气完成便利，而不会每次next()之后释放锁，然后和其他线程竞争，降低了加锁的代价， 提供了程序整体的吞吐量。（即，让一个线程一口气完成任务，再把锁传递给其他线程。</u>
+
 
 4、Condition接口，Lock接口代替了synchronized，Condition接口替代了object的wait、nofity。
 
@@ -119,7 +120,7 @@ java.util.concurrent包为多线程提供了高层的API，满足日常开发中
 
 ### concurrent包下常用多线程数据结构
 
-阻塞队列
++ 阻塞队列
 
     BlockingQueue.class，阻塞队列接口
     DelayQueue.class，阻塞队列，无界队列，并且元素是Delay的子类，保证元素在达到一定时间后才可以取得到
@@ -132,29 +133,29 @@ java.util.concurrent包为多线程提供了高层的API，满足日常开发中
     
     SynchronousQueue.class，同步队列，但是队列长度为0，生产者放入队列的操作会被阻塞，直到消费者过来取，所以这个队列根本不需要空间存放元素；有点像一个独木桥，一次只能一人通过，还不能在桥上停留
 
-非阻塞队列
++ 非阻塞队列
    
    常见非阻塞队列：
 　　ConcurrentLinkedDeque.class，非阻塞双端队列，链表实现，无界队列
 　　ConcurrentLinkedQueue.class，非阻塞队列，链表实现
 
-转移队列：
++ 转移队列：
 
 　　TransferQueue.class，转移队列接口，生产者要等消费者消费的队列，生产者尝试把元素直接转移给消费者
 　　LinkedTransferQueue.class，转移队列的链表实现，它比SynchronousQueue更快，transfer 方法有客户端准备消费，直接把消息直接传递给消费者，不放到队列里，没有消费者线程的话该线程会阻塞。但是可以调用 add put 王队列里丢，队列还是有容量的。
 
-常见集合容器
++ 常见集合容器
 
-    ConcurrentMap.class，并发Map的接口，定义了putIfAbsent(k,v)、remove(k,v)、replace(k,oldV,newV)、replace(k,v)这四个并发场景下特定的方法
-    ConcurrentHashMap.class，并发HashMap，ConcurrentHashMap在并发中效率比 HashTable高，因为 HashTable 在往里添加东西的时候药锁定整个对象，而 ConcurrentHashMap 分成了16段，插入的时候只锁定了其中的一段，其实就是把锁细粒度化了，因此在多线程情况下回比 hashTable高 ，同样也比 Collections.synchronizedMap(map1) 高。
-    ConcurrentSkipListMap.class，跳表数据结构，它也是NavigableMap的实现类（要求元素之间可以比较），只有你确实需要快速的遍历操作，并且可以承受额外的插入开销的时候，在高并发中要求排序才去使用它。
-    ConcurrentSkipListSet.class，和上面类似，只不过map变成了set
-    CopyOnWriteArrayList.class，copy-on-write（写时复制）模式的array list，每当需要插入元素，不在原list上操作，而是会新建立一个list，然后将原先的引用指向副本。适合读远远大于写的场景
-    CopyOnWriteArraySet.class，和上面类似，list变成set而已　
+    ConcurrentMap.class，并发Map的接口，定义了putIfAbsent(k,v)、remove(k,v)、replace(k,oldV,newV)、replace(k,v)这四个并发场景下特定的方法  
+    ConcurrentHashMap.class，并发HashMap，ConcurrentHashMap在并发中效率比 HashTable高，因为 HashTable 在往里添加东西的时候药锁定整个对象，而 ConcurrentHashMap 分成了16段，插入的时候只锁定了其中的一段，其实就是把锁细粒度化了，因此在多线程情况下回比 hashTable高，同样也比 Collections.synchronizedMap(map1) 高。  
+    ConcurrentSkipListMap.class，跳表数据结构，它也是NavigableMap的实现类（要求元素之间可以比较），只有你确实需要快速的遍历操作，并且可以承受额外的插入开销的时候，在高并发中要求排序才去使用它。  
+    ConcurrentSkipListSet.class，和上面类似，只不过map变成了set  
+    CopyOnWriteArrayList.class，copy-on-write（写时复制）模式的array list，每当需要插入元素，不在原list上操作，而是会新建立一个list，然后将原先的引用指向副本。适合读远远大于写的场景  
+    CopyOnWriteArraySet.class，和上面类似，list变成set而已　  
 
-## 多线程任务的执行与管理
+### 多线程任务的执行与管理
 
-1、基本接口（描述任务）
+1. 基本接口（描述任务）
 
 a、Callable接口：
 
@@ -167,7 +168,7 @@ c、Delayed接口：
 
     延迟执行任务，getDelay()返回当前剩余的延迟时间，如果不大于0，说明延迟时间已经过去，应该调度并执行该任务。
 
-2、组合接口（描述任务）
+2. 组合接口（描述任务）
 
 a、RunnableFuture接口：继承自Runnable接口和Future接口。
 
@@ -179,6 +180,6 @@ c、RunnableScheduledFuture接口：继承自Runnable、Delayed和Future，接�
 
 3. ThreadPoolExecutor Executor  ExecutorServer  ScheduleExecutorService  CompletionService接口
 
-[参考实例](https://blog.csdn.net/escaflone/article/details/10418651){:target="_blank"}
+[本文部分内容参考实例](https://blog.csdn.net/escaflone/article/details/10418651){:target="_blank"}
 
-4. ThreadLocal类
+4. ThreadLocal类  --- 未完待续
