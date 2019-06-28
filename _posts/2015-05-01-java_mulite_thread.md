@@ -1,4 +1,11 @@
-# java 多线程基础出
+---
+layout: post
+title: JAVA多线程知识点总结
+date: 2015-05-01
+tags: [JAVA, 多线程, 阻塞/非阻塞, 同步/异步]
+---
+
+# java 多线程基础
 
 ## 阻塞式线程同步
 java final引用的对象其属性可以改变，但是final型的引用是不能被修改的
